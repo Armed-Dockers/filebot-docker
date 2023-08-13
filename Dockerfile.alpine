@@ -29,6 +29,12 @@ RUN set -eux \
 #  ## * link /opt/filebot/data -> /data to persist application data files to the persistent data volume
 #  && ln -s /data /opt/filebot/data
 && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
+
+#crack filebot
+RUN curl "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" --output "filebot.jar" \
+ && mv -f filebot.jar /usr/share/filebot/jar/
+
+
 # install custom launcher scripts
 COPY generic /
 
