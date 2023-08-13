@@ -1,4 +1,4 @@
-FROM amazoncorretto:8u382-alpine3.18-jre
+FROM amazoncorretto:8u382-alpine3.18
 
 LABEL maintainer="hackmonker lol"
 
