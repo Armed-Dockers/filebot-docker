@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM amazoncorretto:8u382-alpine3.18-jre
 
 LABEL maintainer="hackmonker lol"
 
