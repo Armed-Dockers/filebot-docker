@@ -19,9 +19,6 @@ RUN set -eux \
  && curl -fsSL "https://get.filebot.net/filebot/FileBot_4.9.6/FileBot_4.9.6_universal.deb" --output "filebot.deb"  \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt install -y ./filebot.deb \
-  ## crack the filebot
- && wget https://hackmonker:IAMHERO@webdav.shuvsp.me/Toshiba/filebot.jar \
- && mv filebot.jar /usr/share/filebot/jar/ \
  ## ** apply custom application configuration
  && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
 
