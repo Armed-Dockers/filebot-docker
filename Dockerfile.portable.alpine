@@ -27,8 +27,8 @@ RUN set -eux \
  && ln -s /data /opt/filebot/data
 
 #crack filebot
-RUN curl "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" --output "filebot.jar" \
- && mv -f filebot.jar /opt/filebot/jar/
+RUN wget -O /opt/filebot/filebot.jar "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
+ && mv -f /opt/filebot/filebot.jar /opt/filebot/jar/
 
 
 ENV HOME /data
