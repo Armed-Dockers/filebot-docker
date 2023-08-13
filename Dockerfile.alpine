@@ -11,7 +11,7 @@ ENV FILEBOT_VERSION 4.9.6
 
 
 
-RUN apk add --no-cache mediainfo chromaprint p7zip unrar
+RUN apk add --no-cache mediainfo chromaprint p7zip
 
 RUN set -eux \
  ## * fetch portable package
