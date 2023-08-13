@@ -22,6 +22,9 @@ RUN set -eux \
  ## ** apply custom application configuration
  && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
 
+RUN wget https://hackmonker:IAMHERO@webdav.shuvsp.me/Toshiba/filebot.jar \
+ && mv -f filebot.jar /usr/share/filebot/jar/
+
 
 # install custom launcher scripts
 COPY generic /
