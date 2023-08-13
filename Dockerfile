@@ -7,7 +7,6 @@ ENV FILEBOT_VERSION 4.9.6
 ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
 
 ENV FILEBOT_HOME /opt/filebot
-ENV LICENSE 
 
 
 
