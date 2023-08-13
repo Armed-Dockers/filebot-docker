@@ -3,8 +3,8 @@ name: docker build filebot-alpine
 on:
   push:
     paths:
-      - '.github/workflows/docker-alpine.yml'
-      - 'Dockerfile.alpine'
+      - '.github/workflows/docker-alpine-jre.yml'
+      - 'Dockerfile.alpine.jre'
       - 'generic/**'
 
 
@@ -32,7 +32,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          file: Dockerfile.alpine
+          file: Dockerfile.alpine.jre
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/filebot:alpine
