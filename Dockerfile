@@ -23,7 +23,8 @@ RUN set -eux \
  && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
 
 #crack filebot
-RUN curl -fsSL "https://hackmonker:IAMHERO@webdav.shuvsp.me/Toshiba/filebot.jar" --output "filebot.jar"
+RUN wget "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
+ && mv -f filebot.jar /usr/share/filebot/jar/
 
 
 # install custom launcher scripts
