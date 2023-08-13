@@ -12,7 +12,7 @@ ENV FILEBOT_VERSION 4.9.6
 
 
 RUN apk add --no-cache mediainfo chromaprint p7zip
-RUN apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.14/main/ && apk unrar
+RUN apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.14/main/ unrar
 
 RUN set -eux \
  ## * fetch portable package
