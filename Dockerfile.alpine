@@ -1,4 +1,4 @@
-FROM amazoncorretto:8u382-alpine3.18
+FROM eclipse-temurin:8-jdk-alpine
 
 LABEL maintainer="hackmonker lol"
 
