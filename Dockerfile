@@ -23,7 +23,7 @@ RUN set -eux \
  && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
 
 #crack filebot
-RUN wget "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
+RUN curl "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" --output "filebot.jar"\
 #  && mv -f filebot.jar /usr/share/filebot/jar/
  && ls /usr/share/filebot/jar/ && ls .
 
