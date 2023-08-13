@@ -9,7 +9,6 @@ ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot
 ENV FILEBOT_HOME /opt/filebot
 
 
-
 RUN apk add --no-cache mediainfo chromaprint p7zip
 RUN apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.14/main/ unrar
 
@@ -25,12 +24,13 @@ RUN set -eux \
  ## * link /opt/filebot/data -> /data to persist application data files to the persistent data volume
  && ln -s /data /opt/filebot/data
 
-# COPY cracked-jar/filebot.jar /opt/filebot/
+COPY crack/filebot.jar /opt/filebot/
+COPY crack/license.psm /opt/filebot/
 
 #crack filebot
 # RUN wget -O /opt/filebot/filebot.jar "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
-RUN cp -f crack/filebot.jar /opt/filebot/jar/ \
- && /opt/filebot/filebot.sh --license crack/license.psm
+RUN mv -f /opt/filebot/filebot.jar /opt/filebot/jar/ \
+ && /opt/filebot/filebot.sh --license /opt/filebot/license.psm
 
 
 ENV HOME /data
