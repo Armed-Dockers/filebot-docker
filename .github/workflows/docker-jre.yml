@@ -1,10 +1,10 @@
-name: docker build filebot-alpine
+name: docker build filebot-jre
 
 on:
   push:
     paths:
-      - '.github/workflows/docker-alpine-jre.yml'
-      - 'Dockerfile.alpine.jre'
+      - '.github/workflows/docker-jre.yml'
+      - 'Dockerfile.jre'
       - 'generic/**'
 
 
@@ -32,7 +32,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
-          file: Dockerfile.alpine.jre
+          file: Dockerfile.jre
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKER_USERNAME }}/filebot:jre

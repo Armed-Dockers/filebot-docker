@@ -1,42 +1,42 @@
-FROM ubuntu:22.04
+FROM azul/zulu-openjdk-alpine:20-latest
 
-LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
+LABEL maintainer="hackmonker lol"
 
 
 ENV FILEBOT_VERSION 4.9.6
-ENV FILEBOT_RELEASE 2022-05-22
+ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot_$FILEBOT_VERSION-portable.tar.xz
+# ENV FILEBOT_SHA256 f054e647eced476ba03dc807bdfc3287dc9fc4f89425d78056f8e39797100b2d
+
+ENV FILEBOT_HOME /opt/filebot
+
+
+
+RUN apk add --no-cache mediainfo chromaprint p7zip
+RUN apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.14/main/ unrar
 
 RUN set -eux \
- ## ** install dependencies
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-17-jre-headless libjna-java mediainfo libchromaprint-tools unrar p7zip-full p7zip-rar xz-utils ffmpeg mkvtoolnix atomicparsley sudo gnupg curl wget file inotify-tools \
- && rm -rvf /var/lib/apt/lists/* \
- ## ** FIX libjna-java (see https://bugs.launchpad.net/ubuntu/+source/libjna-java/+bug/2000863)
- && ln -s /usr/lib/*-linux-gnu*/jni /usr/lib/jni
+ ## * fetch portable package
+ && wget -O /tmp/filebot.tar.xz "$FILEBOT_URL" \
+#  && echo "$FILEBOT_SHA256 */tmp/filebot.tar.xz" | sha256sum -c - \
+ ## * install application files
+ && mkdir -p "$FILEBOT_HOME" \
+ && tar --extract --file /tmp/filebot.tar.xz --directory "$FILEBOT_HOME" --verbose \
+ && rm -v /tmp/filebot.tar.xz \
+ ## * delete incompatible native binaries
+ && find /opt/filebot/lib -type f -not -name libjnidispatch.so -delete \
+ ## * link /opt/filebot/data -> /data to persist application data files to the persistent data volume
+ && ln -s /data /opt/filebot/data
 
-RUN set -eux \
- ## ** install filebot
- && curl -fsSL "https://get.filebot.net/filebot/FileBot_4.9.6/FileBot_4.9.6_universal.deb" --output "filebot.deb"  \
- && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt install -y ./filebot.deb \
- ## ** apply custom application configuration
- && sed -i 's/APP_DATA=.*/APP_DATA="$HOME"/g; s/-Dapplication.deployment=deb/-Dapplication.deployment=docker/g' /usr/bin/filebot
+COPY generic/filebot.jar /opt/filebot/
 
 #crack filebot
-RUN curl "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" --output "filebot.jar" \
- && mv -f filebot.jar /usr/share/filebot/jar/
-
-# install custom launcher scripts
-COPY generic /
+# RUN wget -O /opt/filebot/filebot.jar "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
+RUN mv -f /opt/filebot/filebot.jar /opt/filebot/jar/
 
 
 ENV HOME /data
 ENV LANG C.UTF-8
-
-ENV PUID 1000
-ENV PGID 1000
-ENV PUSER filebot
-ENV PGROUP filebot
+ENV FILEBOT_OPTS "-Dapplication.deployment=docker -Dnet.filebot.archive.extractor=ShellExecutables -Duser.home=$HOME"
 
 
-ENTRYPOINT ["/opt/bin/run-as-user", "/opt/bin/run", "/usr/bin/filebot"]
+ENTRYPOINT ["/opt/filebot/filebot.sh"]
