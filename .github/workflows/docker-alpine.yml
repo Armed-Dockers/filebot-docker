@@ -1,10 +1,10 @@
-name: docker build filebot-alpine
+name: docker build filebot
 
 on:
   push:
     paths:
       - '.github/workflows/docker-alpine.yml'
-      - 'Dockerfile.alpine'
+      - 'Dockerfile'
       - 'generic/**'
 
 
@@ -35,6 +35,6 @@ jobs:
           file: Dockerfile.alpine
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ secrets.DOCKER_USERNAME }}/filebot:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/filebot
           cache-from: type=gha
           cache-to: type=gha,mode=max
