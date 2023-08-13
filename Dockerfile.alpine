@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:20-latest
+FROM openjdk:17-alpine
 
 LABEL maintainer="hackmonker lol"
 
