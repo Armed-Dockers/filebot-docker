@@ -1,4 +1,4 @@
-FROM hackmonker/filebot
+FROM hackmonker/filebot:latest
 
 LABEL maintainer="hackmonker cracked lmao"
 
