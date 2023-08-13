@@ -35,6 +35,6 @@ jobs:
           file: Dockerfile.alpine.jre
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ secrets.DOCKER_USERNAME }}/filebot:alpine
+          tags: ${{ secrets.DOCKER_USERNAME }}/filebot:jre
           cache-from: type=gha
           cache-to: type=gha,mode=max
