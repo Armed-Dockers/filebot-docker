@@ -1,4 +1,4 @@
-name: docker build filebot
+name: docker build filebot-alpine
 
 on:
   push:
