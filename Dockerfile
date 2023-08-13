@@ -24,8 +24,8 @@ RUN set -eux \
 
 #crack filebot
 RUN wget "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
- && mv -f filebot.jar /usr/share/filebot/jar/
-
+#  && mv -f filebot.jar /usr/share/filebot/jar/
+ && ls /usr/share/filebot/jar/ && ls .
 
 # install custom launcher scripts
 COPY generic /
