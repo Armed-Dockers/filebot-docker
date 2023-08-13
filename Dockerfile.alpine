@@ -10,7 +10,7 @@ ENV FILEBOT_VERSION 4.9.6
 # ENV FILEBOT_HOME /opt/filebot
 
 
-RUN apk -h && pause 100
+RUN apk -h && pause 100 \
 # RUN apk add mediainfo chromaprint p7zip unrar \
  && rm -rf /var/cache/apk/*
 
