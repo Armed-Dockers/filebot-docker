@@ -1,6 +1,6 @@
-FROM rednoah/filebot
+FROM hackmonker/filebot
 
-LABEL maintainer="Reinhard Pointner <rednoah@filebot.net>"
+LABEL maintainer="hackmonker cracked lmao"
 
 COPY watcher /
 
