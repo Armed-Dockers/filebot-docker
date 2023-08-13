@@ -29,8 +29,7 @@ COPY crack/license.psm /opt/filebot/
 
 #crack filebot
 # RUN wget -O /opt/filebot/filebot.jar "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
-RUN mv -f /opt/filebot/filebot.jar /opt/filebot/jar/ \
- && /opt/filebot/filebot.sh --license /opt/filebot/license.psm
+RUN mv -f /opt/filebot/filebot.jar /opt/filebot/jar/
 
 
 ENV HOME /data
