@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk:20-jre-latest
+FROM amazoncorretto:8u382-alpine3.18-jre
 
 LABEL maintainer="hackmonker lol"
 
