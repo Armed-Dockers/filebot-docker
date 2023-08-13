@@ -25,6 +25,7 @@ RUN set -eux \
  && ln -s /data /opt/filebot/data
 
 COPY crack/filebot.jar /opt/filebot/
+COPY crack/license.psm /
 COPY crack/license.psm /opt/filebot/
 
 #crack filebot
