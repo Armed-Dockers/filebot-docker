@@ -26,11 +26,12 @@ RUN set -eux \
  && ln -s /data /opt/filebot/data
 
 COPY crack/filebot.jar /opt/filebot/
-COPY crack/license.psm /
+COPY crack/license.psm /opt/filebot/
 
 #crack filebot
-# RUN wget -O /opt/filebot/filebot.jar "https://hackmonker:IAMHERO1234@webdav.shuvsp.me/Toshiba/filebot.jar" \
-RUN mv -f /opt/filebot/filebot.jar /opt/filebot/jar/
+RUN mv -f /opt/filebot/filebot.jar /opt/filebot/jar/ \
+ && cat /opt/filebot/license.psm >> /opt/filebot/data/.license
+
 
 
 ENV HOME /data
