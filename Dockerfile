@@ -30,6 +30,7 @@ COPY crack/license.psm /opt/filebot/
 
 #crack filebot
 RUN mv -f /opt/filebot/filebot.jar /opt/filebot/jar/ \
+ && mkdir /opt/filebot/data/ \
  && cat /opt/filebot/license.psm >> /opt/filebot/data/.license
 
 
