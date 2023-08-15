@@ -9,7 +9,7 @@ ENV FILEBOT_URL https://get.filebot.net/filebot/FileBot_$FILEBOT_VERSION/FileBot
 ENV FILEBOT_HOME /opt/filebot
 
 
-RUN apk add --no-cache mediainfo chromaprint p7zip inotify-tools coreutils findutils
+RUN apk add --no-cache mediainfo chromaprint p7zip inotify-tools coreutils findutils grep file
 RUN apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/v3.14/main/ unrar \
  && rm -rf /var/cache/apk/*
 
