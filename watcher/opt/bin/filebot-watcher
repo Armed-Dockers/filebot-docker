@@ -20,7 +20,7 @@ inotifywait --monitor "$1" --event create --event moved_to --event modify --excl
 
 	# e.g. video.mp4: video/mp4
 	if file --mime-type "$FILE" | egrep --quiet "directory|video|audio|empty|octet-stream"; then
-		filebot -script fn:amc --action duplicate --conflict auto -non-strict --log-file amc.log --def excludeList=".excludes" unsorted=y music=y artwork=y "$@"
+		/opt/filebot/filebot.sh -script fn:amc --action duplicate --conflict auto -non-strict --log-file amc.log --def excludeList=".excludes" unsorted=y music=y artwork=y "$@"
 	else
 		echo "Ignore: $(file --mime-type "$FILE")"
 	fi
